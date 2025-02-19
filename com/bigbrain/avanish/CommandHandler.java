@@ -8,9 +8,9 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.bigbrain.avanish.util.CMD.QUIT;
-import static com.bigbrain.avanish.util.CMD.ERROR_MESSAGE;
-import static com.bigbrain.avanish.util.CMD.SHOW;
+import static com.bigbrain.avanish.util.Commands.QUIT;
+import static com.bigbrain.avanish.util.Commands.ERROR_MESSAGE;
+import static com.bigbrain.avanish.util.Commands.SHOW;
 
 public class CommandHandler {
 
@@ -33,6 +33,7 @@ public class CommandHandler {
             input = scanner.nextLine();
         }
     }
+
     /**
      * Method with performs the inputted command/ calls the relevant method.
      * @param currentCommand current inputted command
@@ -47,6 +48,7 @@ public class CommandHandler {
         }
         switch (currentCommand[0]) {
             case SHOW:
+                break;
 
 
             default:
