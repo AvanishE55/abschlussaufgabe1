@@ -17,7 +17,19 @@ public final class EffectConstants {
     static final public String SLEEP = "SLEEP";
 
     //Strength - damage type
+    static final public String STRENGTH = "STRENGTH";
+    static final public String HIT_RATE = "HIT_RATE";
     static final public String BASE = "base";
     static final public String REL = "rel";
     static final public String ABS = "abs";
+
+    //Target monster
+    static final public String TARGET_MONSTER = "TARGET_MONSTER";
+    static final public String USER = "user";
+    static final public String TARGET = "target";
+
+
+
+
+
 }

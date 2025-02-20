@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
+import static com.bigbrain.avanish.util.Commands.ACTION;
+import static com.bigbrain.avanish.util.Commands.COMPETITION;
 import static com.bigbrain.avanish.util.Commands.QUIT;
 import static com.bigbrain.avanish.util.Commands.ERROR_MESSAGE;
 import static com.bigbrain.avanish.util.Commands.SHOW;
@@ -18,8 +20,8 @@ public class CommandHandler {
     static Scanner scanner;
     static Random rng;
 
-    static HashMap<String, Action> actionDB;
-    static HashMap<String, Monster> monsterDB;
+    static HashMap<String, Action> actionDB =  new HashMap<>();
+    static HashMap<String, Monster> monsterDB =  new HashMap<>();
 
     public static void main(String[] args) throws IOException {
 
@@ -48,8 +50,16 @@ public class CommandHandler {
         }
         switch (currentCommand[0]) {
             case SHOW:
+
                 break;
 
+            case ACTION:
+
+                break;
+
+            case COMPETITION:
+
+                break;
 
             default:
                 System.out.println(ERROR_MESSAGE);

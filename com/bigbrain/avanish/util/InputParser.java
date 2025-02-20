@@ -1,6 +1,7 @@
 package com.bigbrain.avanish.util;
 
 import com.bigbrain.avanish.Action;
+import com.bigbrain.avanish.Effect;
 import com.bigbrain.avanish.Monster;
 
 import java.io.IOException;
@@ -8,10 +9,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import static com.bigbrain.avanish.util.Commands.ACTION;
 import static com.bigbrain.avanish.util.Commands.END;
+import static com.bigbrain.avanish.util.Commands.ERROR_MESSAGE;
 import static com.bigbrain.avanish.util.Commands.MONSTER;
 
 public class InputParser {
@@ -26,44 +29,49 @@ public class InputParser {
         List<String> configFile = Files.readAllLines(Paths.get(args[0]));
         //configFile.forEach(System.out::println);
 
-        if (configFile != null) {
-            while (!configFile.isEmpty()) {
-                //remove first line and split by space
-                String[] currentLine = configFile.get(0).split(" ");
 
-                switch (currentLine[0]) {
-                    case ACTION:
-                        if (currentLine.length == 3) {
-                            parseAction(currentLine[1], currentLine[2], configFile, actionDB);
-                        }
-                        break;
+        while (!configFile.isEmpty()) {
+            String[] currentLine = configFile.remove(0).trim().split(" ");
 
-                    case MONSTER:
-                        parseMonster(configFile, actionDB, monsterDB);
-                        break;
-
-                    default:
-                        break;
-                }
+            if (currentLine.length == 1) {
+                continue;
             }
 
+            switch (currentLine[0]) {
+                case ACTION:
+                    if (currentLine.length == 3) {
+                        parseAction(currentLine[1], currentLine[2], configFile, actionDB);
+                    } else {
+                        System.out.println(ERROR_MESSAGE);
+                    }
+                    break;
 
+                case MONSTER:
+                    parseMonster(currentLine, actionDB, monsterDB);
+                    break;
+
+                default:
+                    break;
+            }
         }
+
+        System.out.println("Loaded " + actionDB.size() + " actions and " + monsterDB.size() + " monsters.");
     }
 
     private static void parseAction(String name, String element, List<String> configFile, HashMap<String, Action> actionDB) {
-        String[] currentline = configFile.remove(0).split(" ");
         Action action = new Action(name, element);
 
-        while (currentline[0] != END) {
+        String[] currentline = configFile.remove(0).trim().split(" ");
 
-
+        while (!Objects.equals(currentline[0], END)) {
+            action.addEffect(new Effect(currentline));
+            currentline = configFile.remove(0).split(" ");
         }
 
-
+        actionDB.put(name, action);
     }
 
-    private static void parseMonster(List<String> configFile, HashMap<String, Action> actionDB, HashMap<String, Monster> monsterDB) {
+    private static void parseMonster(String[] currentLine, HashMap<String, Action> actionDB, HashMap<String, Monster> monsterDB) {
 
 
     }
