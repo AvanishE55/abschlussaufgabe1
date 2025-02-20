@@ -19,6 +19,8 @@ import static com.bigbrain.avanish.util.Commands.MONSTER;
 
 public class InputParser {
 
+    public static final String LOAD_SUCCESS_MESSAGE = "Loaded %s actions and %s monsters.%n";
+
     public static void parse(String[] args, HashMap<String, Action> actionDB, HashMap<String, Monster> monsterDB, Random rng) throws IOException {
         if (args.length > 1) {
             rng = new Random(Long.parseLong(args[1]));
@@ -55,17 +57,17 @@ public class InputParser {
             }
         }
 
-        System.out.println("Loaded " + actionDB.size() + " actions and " + monsterDB.size() + " monsters.");
+        System.out.printf(LOAD_SUCCESS_MESSAGE, actionDB.size(), monsterDB.size());
     }
 
     private static void parseAction(String name, String element, List<String> configFile, HashMap<String, Action> actionDB) {
         Action action = new Action(name, element);
 
-        String[] currentline = configFile.remove(0).trim().split(" ");
+        String[] currentLine = configFile.remove(0).trim().split(" ");
 
-        while (!Objects.equals(currentline[0], END)) {
-            action.addEffect(new Effect(currentline));
-            currentline = configFile.remove(0).split(" ");
+        while (!Objects.equals(currentLine[0], END)) {
+            action.addEffect(new Effect(currentLine));
+            currentLine = configFile.remove(0).split(" ");
         }
 
         actionDB.put(name, action);

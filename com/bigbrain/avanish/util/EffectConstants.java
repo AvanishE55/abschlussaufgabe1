@@ -11,20 +11,21 @@ public final class EffectConstants {
     static final public String CONT = "continue";
 
     //Status Conditions
+    static final public String STATUS_CONDITION_KEY = "STATUS_CONDITION";
     static final public String WET = "WET";
     static final public String QUICKSAND = "QUICKSAND";
     static final public String BURN = "BURN";
     static final public String SLEEP = "SLEEP";
 
     //Strength - damage type
-    static final public String STRENGTH = "STRENGTH";
+    static final public String STRENGTH_KEY = "STRENGTH";
     static final public String HIT_RATE = "HIT_RATE";
     static final public String BASE = "base";
     static final public String REL = "rel";
     static final public String ABS = "abs";
 
     //Target monster
-    static final public String TARGET_MONSTER = "TARGET_MONSTER";
+    static final public String TARGET_MONSTER_KEY = "TARGET_MONSTER";
     static final public String USER = "user";
     static final public String TARGET = "target";
 
