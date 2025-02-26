@@ -7,15 +7,14 @@ import com.bigbrain.avanish.effects.InflictStatusConditionEffect;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.bigbrain.avanish.util.EffectConstants.CONT;
-import static com.bigbrain.avanish.util.EffectConstants.DAMAGE;
-import static com.bigbrain.avanish.util.EffectConstants.HEAL;
-import static com.bigbrain.avanish.util.EffectConstants.INFLICTSTATCHANGE;
-import static com.bigbrain.avanish.util.EffectConstants.INFLICTSTATUSCONDITION;
-import static com.bigbrain.avanish.util.EffectConstants.PROTECTSTAT;
-import static com.bigbrain.avanish.util.EffectConstants.REPEAT;
-
 public class Action {
+    static final public String DAMAGE =  "damage";
+    static final public String INFLICTSTATUSCONDITION =  "inflictStatusCondition";
+    static final public String INFLICTSTATCHANGE = "inflictStatChange";
+    static final public String PROTECTSTAT = "protectStat";
+    static final public String HEAL = "heal";
+    static final public String REPEAT = "repeat";
+    static final public String CONT = "continue";
     String name;
     String element;
     List<Effect> effectDB = new ArrayList<>();

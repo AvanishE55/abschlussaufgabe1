@@ -6,24 +6,11 @@ import java.util.HashMap;
 
 import static com.bigbrain.avanish.util.Commands.ERROR_MESSAGE;
 import static com.bigbrain.avanish.util.Commands.STATS;
-import static com.bigbrain.avanish.util.EffectConstants.ABS;
-import static com.bigbrain.avanish.util.EffectConstants.BASE;
-import static com.bigbrain.avanish.util.EffectConstants.CONT;
-import static com.bigbrain.avanish.util.EffectConstants.DAMAGE;
 import static com.bigbrain.avanish.util.EffectConstants.DAMAGE_TYPE;
-import static com.bigbrain.avanish.util.EffectConstants.HEAL;
 import static com.bigbrain.avanish.util.EffectConstants.HIT_RATE;
-import static com.bigbrain.avanish.util.EffectConstants.INFLICTSTATCHANGE;
-import static com.bigbrain.avanish.util.EffectConstants.INFLICTSTATUSCONDITION;
-import static com.bigbrain.avanish.util.EffectConstants.PROTECTSTAT;
-import static com.bigbrain.avanish.util.EffectConstants.REL;
-import static com.bigbrain.avanish.util.EffectConstants.REPEAT;
 import static com.bigbrain.avanish.util.EffectConstants.STATUS_CONDITIONS;
 import static com.bigbrain.avanish.util.EffectConstants.STATUS_CONDITION_KEY;
 import static com.bigbrain.avanish.util.EffectConstants.STRENGTH_KEY;
-import static com.bigbrain.avanish.util.EffectConstants.TARGET;
-import static com.bigbrain.avanish.util.EffectConstants.TARGET_MONSTER_KEY;
-import static com.bigbrain.avanish.util.EffectConstants.USER;
 import static com.bigbrain.avanish.util.Stats.STAT_AGL;
 import static com.bigbrain.avanish.util.Stats.STAT_ATK;
 import static com.bigbrain.avanish.util.Stats.STAT_DEF;
@@ -72,7 +59,7 @@ public class EffectOld {
     }
 
     private void parseInflictStatChange(String[] currentLine) {
-        type = INFLICTSTATCHANGE;
+//        type = INFLICTSTATCHANGE;
         if (currentLine.length != 5) {
             System.out.println(ERROR_MESSAGE);
             return;
@@ -103,13 +90,13 @@ public class EffectOld {
     }
 
     private void parseInflictStatusCondition(String[] currentLine) {
-        type = INFLICTSTATUSCONDITION;
+//        type = INFLICTSTATUSCONDITION;
         if (currentLine.length != 4) {
             System.out.println(ERROR_MESSAGE);
             return;
         }
         setTargetMonster(currentLine[1]);
-        if(STATUS_CONDITIONS.contains(currentLine[2])){
+        if (STATUS_CONDITIONS.contains(currentLine[2])) {
             stringProperties.put(STATUS_CONDITION_KEY, currentLine[2]);
         }
 
@@ -121,7 +108,7 @@ public class EffectOld {
             System.out.println(ERROR_MESSAGE);
             return;
         }
-        type = DAMAGE;
+//        type = DAMAGE;
         setTargetMonster(currentLine[1]);
         setStrength(currentLine[2]);
         numberProperties.put(STRENGTH_KEY, Integer.parseInt(currentLine[3]));
@@ -129,23 +116,23 @@ public class EffectOld {
     }
 
     private void setStrength(String strength) {
-        if(DAMAGE_TYPE.contains(strength)){
+        if (DAMAGE_TYPE.contains(strength)) {
             stringProperties.put(STRENGTH_KEY, strength);
         }
 
     }
 
     private void setTargetMonster(String targetMonster) {
-        switch (targetMonster) {
-            case USER:
-                stringProperties.put(TARGET_MONSTER_KEY, USER);
-                break;
-            case TARGET:
-                stringProperties.put(TARGET_MONSTER_KEY, TARGET);
-                break;
-            default:
-                System.out.println(ERROR_MESSAGE);
-                break;
-        }
+//        switch (targetMonster) {
+//            case USER:
+//                stringProperties.put(TARGET_MONSTER_KEY, USER);
+//                break;
+//            case TARGET:
+//                stringProperties.put(TARGET_MONSTER_KEY, TARGET);
+//                break;
+//            default:
+//                System.out.println(ERROR_MESSAGE);
+//                break;
+//        }
     }
 }
