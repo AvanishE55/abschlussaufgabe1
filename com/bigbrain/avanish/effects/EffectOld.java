@@ -1,4 +1,6 @@
-package com.bigbrain.avanish;
+package com.bigbrain.avanish.effects;
+
+import com.bigbrain.avanish.util.EffectConstants;
 
 import java.util.HashMap;
 
@@ -6,68 +8,66 @@ import static com.bigbrain.avanish.util.Commands.ERROR_MESSAGE;
 import static com.bigbrain.avanish.util.Commands.STATS;
 import static com.bigbrain.avanish.util.EffectConstants.ABS;
 import static com.bigbrain.avanish.util.EffectConstants.BASE;
-import static com.bigbrain.avanish.util.EffectConstants.BURN;
 import static com.bigbrain.avanish.util.EffectConstants.CONT;
 import static com.bigbrain.avanish.util.EffectConstants.DAMAGE;
+import static com.bigbrain.avanish.util.EffectConstants.DAMAGE_TYPE;
 import static com.bigbrain.avanish.util.EffectConstants.HEAL;
 import static com.bigbrain.avanish.util.EffectConstants.HIT_RATE;
 import static com.bigbrain.avanish.util.EffectConstants.INFLICTSTATCHANGE;
 import static com.bigbrain.avanish.util.EffectConstants.INFLICTSTATUSCONDITION;
 import static com.bigbrain.avanish.util.EffectConstants.PROTECTSTAT;
-import static com.bigbrain.avanish.util.EffectConstants.QUICKSAND;
 import static com.bigbrain.avanish.util.EffectConstants.REL;
 import static com.bigbrain.avanish.util.EffectConstants.REPEAT;
-import static com.bigbrain.avanish.util.EffectConstants.SLEEP;
+import static com.bigbrain.avanish.util.EffectConstants.STATUS_CONDITIONS;
 import static com.bigbrain.avanish.util.EffectConstants.STATUS_CONDITION_KEY;
 import static com.bigbrain.avanish.util.EffectConstants.STRENGTH_KEY;
 import static com.bigbrain.avanish.util.EffectConstants.TARGET;
 import static com.bigbrain.avanish.util.EffectConstants.TARGET_MONSTER_KEY;
 import static com.bigbrain.avanish.util.EffectConstants.USER;
-import static com.bigbrain.avanish.util.EffectConstants.WET;
 import static com.bigbrain.avanish.util.Stats.STAT_AGL;
 import static com.bigbrain.avanish.util.Stats.STAT_ATK;
 import static com.bigbrain.avanish.util.Stats.STAT_DEF;
 import static com.bigbrain.avanish.util.Stats.STAT_PRC;
 import static com.bigbrain.avanish.util.Stats.STAT_SPD;
 
-public class Effect {
+public class EffectOld {
 
     public String type;
     public int repeat = 0;
     public HashMap<String, String> stringProperties = new HashMap<>();
     public HashMap<String, Integer> numberProperties = new HashMap<>();
+//    public EffectConstantsEnum typeenum = EffectConstantsEnum.valueOf("damage");
+//    public String typestring = EffectConstantsEnum.ENUMDAMAGE.value;
 
-    public Effect(String[] currentLine) {
+    public EffectOld(String[] currentLine) {
         switch (currentLine[0]) {
-            case DAMAGE:
-                parseDamage(currentLine);
-                break;
-
-            case INFLICTSTATUSCONDITION:
-                parseInflictStatusCondition(currentLine);
-                break;
-
-            case INFLICTSTATCHANGE:
-                parseInflictStatChange(currentLine);
-                break;
-
-            case PROTECTSTAT:
-                type = PROTECTSTAT;
-                break;
-
-            case HEAL:
-                type = HEAL;
-                break;
-
-            case REPEAT:
-                repeat = Integer.parseInt(currentLine[1]);
-                break;
-
-            case CONT:
-                type = CONT;
-                break;
-
-
+//            case DAMAGE:
+//                parseDamage(currentLine);
+//                break;
+//
+//            case INFLICTSTATUSCONDITION:
+//                parseInflictStatusCondition(currentLine);
+//                break;
+//
+//            case INFLICTSTATCHANGE:
+//                parseInflictStatChange(currentLine);
+//                break;
+//
+//            case PROTECTSTAT:
+//                type = PROTECTSTAT;
+//                break;
+//
+//            case HEAL:
+//                type = HEAL;
+//                break;
+//
+//            case REPEAT:
+//                repeat = Integer.parseInt(currentLine[1]);
+//                break;
+//
+//            case CONT:
+//                type = CONT;
+//                break;
         }
     }
 
@@ -109,24 +109,10 @@ public class Effect {
             return;
         }
         setTargetMonster(currentLine[1]);
-
-        switch (currentLine[2]) {
-            case WET:
-                stringProperties.put(STATUS_CONDITION_KEY, WET);
-                break;
-            case QUICKSAND:
-                stringProperties.put(STATUS_CONDITION_KEY, QUICKSAND);
-                break;
-            case BURN:
-                stringProperties.put(STATUS_CONDITION_KEY, BURN);
-                break;
-            case SLEEP:
-                stringProperties.put(STATUS_CONDITION_KEY, SLEEP);
-                break;
-            default:
-                System.out.println(ERROR_MESSAGE);
-                break;
+        if(STATUS_CONDITIONS.contains(currentLine[2])){
+            stringProperties.put(STATUS_CONDITION_KEY, currentLine[2]);
         }
+
         numberProperties.put(HIT_RATE, Integer.parseInt(currentLine[3]));
     }
 
@@ -143,20 +129,10 @@ public class Effect {
     }
 
     private void setStrength(String strength) {
-        switch (strength) {
-            case BASE:
-                stringProperties.put(STRENGTH_KEY, BASE);
-                break;
-            case REL:
-                stringProperties.put(STRENGTH_KEY, REL);
-                break;
-            case ABS:
-                stringProperties.put(STRENGTH_KEY, ABS);
-                break;
-            default:
-                System.out.println(ERROR_MESSAGE);
-                break;
+        if(DAMAGE_TYPE.contains(strength)){
+            stringProperties.put(STRENGTH_KEY, strength);
         }
+
     }
 
     private void setTargetMonster(String targetMonster) {

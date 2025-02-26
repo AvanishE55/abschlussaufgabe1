@@ -1,7 +1,6 @@
 package com.bigbrain.avanish.util;
 
 import com.bigbrain.avanish.Action;
-import com.bigbrain.avanish.Effect;
 import com.bigbrain.avanish.Monster;
 
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 import static com.bigbrain.avanish.util.Commands.ACTION;
@@ -65,8 +63,8 @@ public class InputParser {
 
         String[] currentLine = configFile.remove(0).trim().split(" ");
 
-        while (!Objects.equals(currentLine[0], END)) {
-            action.addEffect(new Effect(currentLine));
+        while (!currentLine[0].equals(END)) {
+            action.addEffect(currentLine);
             currentLine = configFile.remove(0).split(" ");
         }
 

@@ -4,7 +4,6 @@ import com.bigbrain.avanish.util.InputParser;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,6 +21,7 @@ public class CommandHandler {
 
     static HashMap<String, Action> actionDB =  new HashMap<>();
     static HashMap<String, Monster> monsterDB =  new HashMap<>();
+    static Competition competition;
 
     public static void main(String[] args) throws IOException {
 
@@ -30,7 +30,7 @@ public class CommandHandler {
         scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        while (!Objects.equals(input, QUIT)) {
+        while (!input.equals(QUIT)) {
             performCommand(input.split(" "));
             input = scanner.nextLine();
         }
@@ -43,9 +43,6 @@ public class CommandHandler {
     public static void performCommand(String[] currentCommand) {
         if (currentCommand.length < 1) {
             System.out.println(ERROR_MESSAGE);
-
-            //System.out.println(String.format("It is %d oclock", 5));
-
             return;
         }
         switch (currentCommand[0]) {
@@ -58,7 +55,7 @@ public class CommandHandler {
                 break;
 
             case COMPETITION:
-
+                //competition = new Competition();
                 break;
 
             default:
