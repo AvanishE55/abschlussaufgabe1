@@ -58,7 +58,7 @@ public abstract class Effect {
                 break;
 
             case REPEAT:
-                effectsDB.add(new RepeatEffect(currentLine, configFile));
+                effectsDB.add(new RepeatEffect(Integer.parseInt(currentLine[1]), configFile));
                 break;
 
             case CONTINUE:
