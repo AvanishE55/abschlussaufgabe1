@@ -28,7 +28,6 @@ public class Monster {
         baseStats.put(Stats.DEF, Integer.parseInt(monsterLine[4]));
         baseStats.put(Stats.SPD, Integer.parseInt(monsterLine[5]));
         baseStats.put(Stats.PRC, 1);
-//        actions.addAll(List.of(Arrays.copyOfRange(monsterLine, 6, monsterLine.length)));
 
         for(String action : Arrays.copyOfRange(monsterLine, 6, monsterLine.length)){
             if(actionDB.containsKey(action) && !actions.contains(action)){

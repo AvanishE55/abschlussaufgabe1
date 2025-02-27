@@ -1,5 +1,6 @@
 package com.bigbrain.avanish;
 
+import com.bigbrain.avanish.effects.ShowCommand;
 import com.bigbrain.avanish.util.InputParser;
 
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class CommandHandler {
         }
         switch (currentCommand[0]) {
             case SHOW:
-
+                ShowCommand.show(currentCommand);
                 break;
 
             case LOAD:
