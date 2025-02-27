@@ -2,6 +2,7 @@ package com.bigbrain.avanish.util;
 
 import com.bigbrain.avanish.Action;
 import com.bigbrain.avanish.Monster;
+import com.bigbrain.avanish.effects.Effect;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -89,7 +90,7 @@ public class InputParser {
         String[] currentLine = configFile.remove(0).trim().split(" ");
 
         while (!currentLine[0].equals(END)) {
-            action.addEffect(currentLine, configFile);
+            Effect.addEffect(action.getEffectDB(), currentLine, configFile);
             currentLine = configFile.remove(0).trim().split(" ");
         }
 
