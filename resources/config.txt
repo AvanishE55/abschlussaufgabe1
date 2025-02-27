@@ -2,7 +2,7 @@ action RepeatActionTest WATER
     protectStat stats random 1 3 100
     repeat 3
         damage target base 70 90
-        inflictStatChange target SPD -1 85
+        continue 85
     end repeat
     heal user abs 15 100
 end action

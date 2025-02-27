@@ -22,7 +22,7 @@ public class CommandHandler {
     static public boolean debug = false;
 
     static final HashMap<String, Action> actionDB = new HashMap<>();
-    static final HashMap<String, Monster> monsterDB = new HashMap<>();
+    static final HashMap<String, String[]> monsterDB = new HashMap<>();
     static Competition competition;
 
     public static void main(String[] args) throws IOException {
@@ -30,10 +30,13 @@ public class CommandHandler {
         debug = InputParser.parseStartupInput(args, actionDB, monsterDB, rng);
 
         scanner = new Scanner(System.in);
+
+        //Monster myMonster = new Monster(monsterDB.get("BullFrog"));
+
         String input = scanner.nextLine();
 
         while (!input.equals(QUIT)) {
-            performCommand(input.split(" "));
+            performCommand(input.trim().split(" "));
             input = scanner.nextLine();
         }
     }

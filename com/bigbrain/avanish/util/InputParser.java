@@ -7,6 +7,7 @@ import com.bigbrain.avanish.effects.Effect;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class InputParser {
     public static final String LOAD_SUCCESS_MESSAGE = "Loaded %s actions and %s monsters.%n";
     public static final String DEBUG = "debug";
 
-    public static boolean parseStartupInput(String[] args, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB, Random rng) throws IOException {
+    public static boolean parseStartupInput(String[] args, final HashMap<String, Action> actionDB, final HashMap<String, String[]> monsterDB, Random rng) throws IOException {
 
         loadConfig(args[0], actionDB, monsterDB);
 
@@ -37,9 +38,9 @@ public class InputParser {
         return false;
     }
 
-    public static void loadConfig(String path, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB) {
+    public static void loadConfig(String path, final HashMap<String, Action> actionDB, final HashMap<String, String[]> monsterDB) {
         HashMap<String, Action> tempActionDB = new HashMap<>();
-        HashMap<String, Monster> tempMonsterDB = new HashMap<>();
+        HashMap<String, String[]> tempMonsterDB = new HashMap<>();
 
         List<String> configFile;
 
@@ -68,7 +69,7 @@ public class InputParser {
                     break;
 
                 case MONSTER:
-                    parseMonster(currentLine, tempActionDB, tempMonsterDB);
+                    tempMonsterDB.put(currentLine[1], Arrays.copyOfRange(currentLine, 1, currentLine.length));
                     break;
 
                 default:
@@ -97,10 +98,6 @@ public class InputParser {
         actionDB.put(name, action);
     }
 
-    private static void parseMonster(String[] currentLine, HashMap<String, Action> actionDB, HashMap<String, Monster> monsterDB) {
-
-
-    }
 
 
 }
