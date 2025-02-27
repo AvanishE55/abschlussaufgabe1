@@ -89,8 +89,8 @@ public class InputParser {
         String[] currentLine = configFile.remove(0).trim().split(" ");
 
         while (!currentLine[0].equals(END)) {
-            action.addEffect(currentLine);
-            currentLine = configFile.remove(0).split(" ");
+            action.addEffect(currentLine, configFile);
+            currentLine = configFile.remove(0).trim().split(" ");
         }
 
         actionDB.put(name, action);
