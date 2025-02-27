@@ -2,7 +2,9 @@ package com.bigbrain.avanish;
 
 import com.bigbrain.avanish.effects.DamageEffect;
 import com.bigbrain.avanish.effects.Effect;
+import com.bigbrain.avanish.effects.InflictStatChangeEffect;
 import com.bigbrain.avanish.effects.InflictStatusConditionEffect;
+import com.bigbrain.avanish.util.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +18,12 @@ public class Action {
     static final public String REPEAT = "repeat";
     static final public String CONT = "continue";
     String name;
-    String element;
+    Elements element;
     List<Effect> effectDB = new ArrayList<>();
 
     public Action(String name, String element) {
         this.name = name;
-        this.element = element;
+        this.element = Elements.valueOf(element.toUpperCase());
     }
 
     public void addEffect(String[] currentLine){
@@ -35,6 +37,7 @@ public class Action {
                 break;
 
             case INFLICTSTATCHANGE:
+                effectDB.add(new InflictStatChangeEffect(currentLine));
                 break;
 
             case PROTECTSTAT:

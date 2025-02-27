@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import static com.bigbrain.avanish.util.Commands.ACTION;
 import static com.bigbrain.avanish.util.Commands.COMPETITION;
+import static com.bigbrain.avanish.util.Commands.LOAD;
 import static com.bigbrain.avanish.util.Commands.QUIT;
 import static com.bigbrain.avanish.util.Commands.ERROR_MESSAGE;
 import static com.bigbrain.avanish.util.Commands.SHOW;
@@ -19,13 +20,13 @@ public class CommandHandler {
     static Scanner scanner;
     static Random rng;
 
-    static HashMap<String, Action> actionDB =  new HashMap<>();
-    static HashMap<String, Monster> monsterDB =  new HashMap<>();
+    static final HashMap<String, Action> actionDB = new HashMap<>();
+    static final HashMap<String, Monster> monsterDB = new HashMap<>();
     static Competition competition;
 
     public static void main(String[] args) throws IOException {
 
-        InputParser.parse(args, actionDB, monsterDB, rng);
+        InputParser.parseStartupInput(args, actionDB, monsterDB, rng);
 
         scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -47,6 +48,11 @@ public class CommandHandler {
         }
         switch (currentCommand[0]) {
             case SHOW:
+
+                break;
+
+            case LOAD:
+                InputParser.loadConfig(currentCommand[0], actionDB, monsterDB);
 
                 break;
 

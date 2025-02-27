@@ -20,11 +20,11 @@ public class Monster {
     public Monster(String name, String element, int baseATK, int baseDEF, int baseSPD, int baseAGL, int basePRC, Collection<Action> actions) {
         this.name = name;
         this.element = element;
-        baseStats.put(STAT_ATK, baseATK);
-        baseStats.put(STAT_DEF, baseDEF);
-        baseStats.put(STAT_SPD, baseSPD);
-        baseStats.put(STAT_AGL, baseAGL);
-        baseStats.put(STAT_PRC, basePRC);
+//        baseStats.put(STAT_ATK, baseATK);
+//        baseStats.put(STAT_DEF, baseDEF);
+//        baseStats.put(STAT_SPD, baseSPD);
+//        baseStats.put(STAT_AGL, baseAGL);
+//        baseStats.put(STAT_PRC, basePRC);
         this.actions = actions;
 
 

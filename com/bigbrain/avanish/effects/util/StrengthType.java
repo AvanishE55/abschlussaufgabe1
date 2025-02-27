@@ -1,4 +1,4 @@
-package com.bigbrain.avanish.effects;
+package com.bigbrain.avanish.effects.util;
 
 public enum StrengthType {
     BASE,

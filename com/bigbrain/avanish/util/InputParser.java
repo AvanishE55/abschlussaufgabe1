@@ -19,16 +19,32 @@ public class InputParser {
 
     public static final String LOAD_SUCCESS_MESSAGE = "Loaded %s actions and %s monsters.%n";
 
-    public static void parse(String[] args, HashMap<String, Action> actionDB, HashMap<String, Monster> monsterDB, Random rng) throws IOException {
-        if (args.length > 1) {
+    public static void parseStartupInput(String[] args, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB, Random rng) throws IOException {
+
+        if (args[1].equals("debug")) {
+            //todo implement debug mode
+        } else if (args.length > 1) {
             rng = new Random(Long.parseLong(args[1]));
         } else {
             rng = new Random();
         }
 
-        List<String> configFile = Files.readAllLines(Paths.get(args[0]));
-        //configFile.forEach(System.out::println);
+        loadConfig(args[0], actionDB, monsterDB);
+    }
 
+    public static void loadConfig(String path, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB) {
+        HashMap<String, Action> tempActionDB = new HashMap<>();
+        HashMap<String, Monster> tempMonsterDB = new HashMap<>();
+
+        List<String> configFile;
+
+        try {
+            configFile = Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            System.out.println(ERROR_MESSAGE);
+            return;
+        }
+        //configFile.forEach(System.out::println); //print read config file to stdout
 
         while (!configFile.isEmpty()) {
             String[] currentLine = configFile.remove(0).trim().split(" ");
@@ -40,20 +56,25 @@ public class InputParser {
             switch (currentLine[0]) {
                 case ACTION:
                     if (currentLine.length == 3) {
-                        parseAction(currentLine[1], currentLine[2], configFile, actionDB);
+                        parseAction(currentLine[1], currentLine[2], configFile, tempActionDB);
                     } else {
                         System.out.println(ERROR_MESSAGE);
                     }
                     break;
 
                 case MONSTER:
-                    parseMonster(currentLine, actionDB, monsterDB);
+                    parseMonster(currentLine, tempActionDB, tempMonsterDB);
                     break;
 
                 default:
                     break;
             }
         }
+
+        actionDB.clear();
+        actionDB.putAll(tempActionDB);
+        monsterDB.clear();
+        monsterDB.putAll(tempMonsterDB);
 
         System.out.printf(LOAD_SUCCESS_MESSAGE, actionDB.size(), monsterDB.size());
     }

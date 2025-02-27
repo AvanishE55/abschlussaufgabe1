@@ -1,7 +1,9 @@
 package com.bigbrain.avanish.effects;
 
+import com.bigbrain.avanish.effects.util.EffectType;
+
 public abstract class Effect {
-    EffectType type;
+    EffectType effectType;
     public int hitRate;
 
 //     abstract void performEffect();

@@ -8,6 +8,7 @@ public final class Commands {
     static final public String ERROR_MESSAGE = "ERROR";
     static final public String QUIT = "quit";
     static final public String SHOW = "show";
+    static final public String LOAD = "load";
     static final public String ACTION = "action";
     static final public String MONSTER = "monster";
     static final public String END = "end";
