@@ -18,18 +18,22 @@ import static com.bigbrain.avanish.util.Commands.MONSTER;
 public class InputParser {
 
     public static final String LOAD_SUCCESS_MESSAGE = "Loaded %s actions and %s monsters.%n";
+    public static final String DEBUG = "debug";
 
-    public static void parseStartupInput(String[] args, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB, Random rng) throws IOException {
+    public static boolean parseStartupInput(String[] args, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB, Random rng) throws IOException {
 
-        if (args[1].equals("debug")) {
-            //todo implement debug mode
-        } else if (args.length > 1) {
+        loadConfig(args[0], actionDB, monsterDB);
+
+        if (args.length > 1) {
+            if (args[1].equals(DEBUG)) {
+                return true;
+            }
             rng = new Random(Long.parseLong(args[1]));
         } else {
             rng = new Random();
         }
 
-        loadConfig(args[0], actionDB, monsterDB);
+        return false;
     }
 
     public static void loadConfig(String path, final HashMap<String, Action> actionDB, final HashMap<String, Monster> monsterDB) {

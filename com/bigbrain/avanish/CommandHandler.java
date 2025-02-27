@@ -19,6 +19,7 @@ public class CommandHandler {
 
     static Scanner scanner;
     static Random rng;
+    static public boolean debug = false;
 
     static final HashMap<String, Action> actionDB = new HashMap<>();
     static final HashMap<String, Monster> monsterDB = new HashMap<>();
@@ -26,7 +27,7 @@ public class CommandHandler {
 
     public static void main(String[] args) throws IOException {
 
-        InputParser.parseStartupInput(args, actionDB, monsterDB, rng);
+        debug = InputParser.parseStartupInput(args, actionDB, monsterDB, rng);
 
         scanner = new Scanner(System.in);
         String input = scanner.nextLine();

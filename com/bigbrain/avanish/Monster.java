@@ -3,12 +3,6 @@ package com.bigbrain.avanish;
 import java.util.Collection;
 import java.util.HashMap;
 
-import static com.bigbrain.avanish.util.Stats.STAT_AGL;
-import static com.bigbrain.avanish.util.Stats.STAT_ATK;
-import static com.bigbrain.avanish.util.Stats.STAT_DEF;
-import static com.bigbrain.avanish.util.Stats.STAT_PRC;
-import static com.bigbrain.avanish.util.Stats.STAT_SPD;
-
 public class Monster {
     String name;
     String element;
